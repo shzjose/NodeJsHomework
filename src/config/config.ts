@@ -10,8 +10,15 @@ const SERVER = {
     port: SERVER_PORT
 }
 
+const SECRET_TOKEN = process.env.SECRET_TOKEN || 'superpasswordkey';
+
+const SECRETS = {
+    token: SECRET_TOKEN
+}
+
 const config = {
-    server: SERVER
+    server: SERVER,
+    secrets: SECRETS
 }
 
 export default config;

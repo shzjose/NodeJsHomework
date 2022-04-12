@@ -3,6 +3,8 @@ import logger from "./config/logger";
 import http from 'http';
 import bodyParser from 'body-parser';
 import express, { NextFunction, Request, Response } from 'express';
+import videogameRoutes from './routes/videgames'
+import userRoutes from "./routes/user"
 
 const router = express();
 
@@ -15,9 +17,14 @@ router.use((req: Request, res: Response, next: NextFunction) => {
     res.on('finish', () =>{
         logger.info(`METHOD: [${req.method}] - URL: [${req.url}]- STATUS: ${res.statusCode} IP: [${req.socket.remoteAddress}]`);
     });
+    next();
 });
 
 //Routes
+
+router.use('/api', userRoutes); 
+
+router.use('/api', videogameRoutes);        
 
 router.use((req: Request, res: Response, next: NextFunction) => {
     const error = new Error('Not Found');
