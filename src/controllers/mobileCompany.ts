@@ -1,47 +1,49 @@
 import { NextFunction, Request, Response } from "express";
-import Videogame from '../models/videogame';
+import MobileCompany from '../models/mobileCompany';
 import mongoose from "mongoose";
 
 const getAll = async(req: Request, res: Response, next: NextFunction) => {
 
-    const result = await Videogame.find().exec();
+    const result = await MobileCompany.find().exec();
 
     // TODO search for all vg and return
     return res.status(200).json({
-        messagge : 'Get all',
+        messagge : 'All Mobile Companies: ',
         result
     });
 };
 
 const create = async(req: Request, res: Response, next: NextFunction) => {
-    const { name, company, year } = req.body;
+
+    const { name, slogan, birthday_date, sponsors } = req.body;
 
     // TODO Validate parameters
 
-    const videgame = new Videogame({
+    const mobileCompany = new MobileCompany({
         _id : new mongoose.Types.ObjectId,
         name,
-        company,
-        year
+        slogan,
+        birthday_date,
+        sponsors
     });
 
-    const result = await videgame.save();
+    const result = await mobileCompany.save();
 
     return res.status(201).json({
-        messagge : 'Create',
+        messagge : '¡Mobile Company Registered Successfully!',
         result
     });
 };
 
 const update = async(req: Request, res: Response, next: NextFunction) => {
     const id = req.params.id;
-    const { name, company, year } = req.body;
+    const { name, slogan, birthday_date,  sponsors } = req.body;
 
     // VALIDATE 
-    const result = await Videogame.findByIdAndUpdate(id, {name, company, year}, { new: true});
+    const result = await MobileCompany.findByIdAndUpdate(id, { name, slogan, birthday_date,  sponsors }, { new: true});
 
     return res.status(200).json({
-        messagge : 'Update',
+        messagge : '¡Mobile Company Updated Successfully',
         result
     });
 };
@@ -49,10 +51,10 @@ const update = async(req: Request, res: Response, next: NextFunction) => {
 const remove = async(req: Request, res: Response, next: NextFunction) => {
     const id = req.params.id;
 
-    const result = await Videogame.findByIdAndDelete(id);
+    const result = await MobileCompany.findByIdAndDelete(id);
     // TODO: search for vg by id = id, delete from db
     return res.status(200).json({
-        messagge : 'Remove',
+        messagge : '¡Mobile Company ABSOLUTELY DESTROYEDDD!!!!!!!',
         result
     });
 };
@@ -62,10 +64,10 @@ const get = async(req: Request, res: Response, next: NextFunction) => {
 
     //TODO search for vg with id = id and return
 
-    const result = await Videogame.findById(id);
+    const result = await MobileCompany.findById(id);
 
     return res.status(201).json({
-        messagge : 'Get',
+        messagge : '¡Mobile Company Found!',
         result
     });
 };

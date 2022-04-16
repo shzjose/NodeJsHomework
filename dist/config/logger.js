@@ -20,3 +20,4 @@ const error = (message, object) => {
     }
 };
 exports.default = { info, error };
+

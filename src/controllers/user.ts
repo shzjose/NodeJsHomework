@@ -28,7 +28,7 @@ const login = async(req: Request, res: Response, next: NextFunction) =>{
     const token = jwt.sign({ username, id: user.id}, config.secrets.token);
 
     return res.status(200).json({
-        message: 'Login Succesfull',
+        message: '¡Login Succesfull!',
         token
     });
 
@@ -42,14 +42,14 @@ const register = async (req: Request, res: Response, next: NextFunction) => {
 
     // TODO validate username email, password lenght, caracters
     
-
+    //Validación de password
     const salt = await bcrypt.genSalt(10);
     const passwordHash = await bcrypt.hash(password, salt);
 
     const userExist = await User.findOne({username}).exec();
     if(userExist){
         return res.status(400).json({
-            error: 'User already exist'
+            error: 'User Already Exists, Please Use Another Name'
         });
     }
 
@@ -63,10 +63,11 @@ const register = async (req: Request, res: Response, next: NextFunction) => {
 
     // TODO save user and pass
     return res.status(200).json({
-        message: 'Register Success',
+        message: '¡User Registered Successfully!',
         user: {
             id: result._id,
             username: result.username,
+            password: result.password,
         }
     });
 };

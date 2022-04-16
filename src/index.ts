@@ -3,8 +3,9 @@ import logger from "./config/logger";
 import http from 'http';
 import bodyParser from 'body-parser';
 import express, { NextFunction, Request, Response } from 'express';
-import videogameRoutes from './routes/videgames'
-import userRoutes from "./routes/user"
+import userRoutes from "./routes/user";
+import mobileRoutes from "./routes/mobiles";
+import mobileCompanyRoutes from "./routes/mobileCompany";
 import middleware from "./controllers/middleware";
 import mongoose from 'mongoose';
 
@@ -34,8 +35,10 @@ router.use((req: Request, res: Response, next: NextFunction) => {
 //Routes
 
 router.use('/api', userRoutes); 
+ 
+router.use('/api', middleware.verifyTokens, mobileRoutes);  
 
-router.use('/api', middleware.verifyTokens, videogameRoutes);        
+router.use('/api', middleware.verifyTokens, mobileCompanyRoutes);  
 
 router.use((req: Request, res: Response, next: NextFunction) => {
     const error = new Error('Not Found');

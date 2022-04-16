@@ -12,9 +12,9 @@ const MONGO_OPTIONS = {
     retryWrites: false
 }
 
-const MONGO_USERNAME = process.env.MONGO_USERNAME || 'carloscr7';
-const MONGO_PASSWORD = process.env.MONGO_PASSWORD || 'cjr0e1ZdfbWuncve';
-const MONGO_HOST = process.env.MONGO_HOST || 'cluster0.1ez1q.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
+const MONGO_USERNAME = process.env.MONGO_USERNAME || 'demonbeagle';
+const MONGO_PASSWORD = process.env.MONGO_PASSWORD || 'demonbeagle17071998';
+const MONGO_HOST = process.env.MONGO_HOST || 'clusternodejs.n2su2.mongodb.net/nodejs';
 
 const MONGO = {
     host: MONGO_HOST,

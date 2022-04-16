@@ -9,3 +9,4 @@ logger_1.default.error('error');
 logger_1.default.info('info');
 logger_1.default.info(config_1.default.server.hostname);
 logger_1.default.info(config_1.default.server.port.toString());
+
